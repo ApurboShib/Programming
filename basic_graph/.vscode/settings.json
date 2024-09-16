@@ -1,0 +1,9 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "__locale": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "ios": "cpp"
+    }
+}
