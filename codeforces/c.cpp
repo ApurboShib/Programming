@@ -1,42 +1,61 @@
-#include <algorithm>
 #include <iostream>
+#include <map>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
-bool canMakeArrayEqual(vector<int>& arr) {
-  // Find the greatest common divisor (GCD) of all elements in the array.
-  int gcd = arr[0];
-  for (int i = 1; i < arr.size(); i++) {
-    gcd = __gcd(gcd, arr[i]);
-  }
-
-  // If the GCD is greater than 1, then it is possible to make all elements
-  // in the array equal by applying the operation a certain number of times.
-  return gcd > 1;
-}
-
 int main() {
-  int t;
-  cin >> t;
-
-  while (t--) {
-    int n;
-    cin >> n;
-
-    vector<int> arr(n);
+    int n, m, k;
+    cin >> n >> m >> k;
+    
+    map<int, int> mp, mp2;
+    vector<int> a(n), b(m);
+    
+    for (int i = 0; i < m; i++) {
+        cin >> b[i];
+        mp[b[i]]++;
+    }
+    
+    int cur = 0, ans = 0;
     for (int i = 0; i < n; i++) {
-      cin >> arr[i];
+        cin >> a[i];
     }
 
-    bool canMakeEqual = canMakeArrayEqual(arr);
-
-    if (canMakeEqual) {
-      cout << "YES" << endl;
-    } else {
-      cout << "NO" << endl;
+    for (int i = 0; i < m; i++) {
+        mp2[a[i]]++;
     }
-  }
 
-  return 0;
+    for (auto it : mp) {
+        int val = it.first;
+        if (mp2.find(val) != mp2.end()) {
+            cur += min(mp[val], mp2[val]);
+        }
+    }
+
+    if (cur >= k) {
+        ans++;
+    }
+
+    if (n == m) {
+        cout << ans << endl;
+        return 0;
+    }
+
+    for (int i = 0; i < n - m; i++) {
+        if (a[i] != a[i + m]) {
+            cur -= min(mp[a[i]], mp2[a[i]]);
+            cur -= min(mp[a[i + m]], mp2[a[i + m]]);
+            mp2[a[i]]--;
+            mp2[a[i + m]]++;
+            cur += min(mp[a[i]], mp2[a[i]]);
+            cur += min(mp[a[i + m]], mp2[a[i + m]]);
+        }
+        if (cur >= k) {
+            ans++;
+        }
+    }
+
+    cout << ans << endl;
+
+    return 0;
 }

@@ -1,23 +1,29 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+#define endl '\n'
 #define ll long long
-#define endl '\n';
-int32_t main() {
-ios_base::sync_with_stdio(0);
-cin.tie(0);
-int n; cin >> n;
-string s;
-int x = 0;
-for(int i = 0; i < n; i++){
-    cin >> s;
-    if(s.find("++") != string::npos){
-        x++;
-    }
-    else if(s.find("--") != string::npos){
-        x--;
-    }
-    
-}
-cout << x << endl;
-return 0;
+const int MOD = 1e9 + 7;
+const int N = 1e5 + 9;
+
+
+signed main(){
+
+ ios::sync_with_stdio(false);
+ cin.tie(nullptr);
+
+ int n;
+ cin >> n;
+ string s;
+ cin >> s;
+ int cnt = 0;
+ while(n--){
+ 	if(s[0] == '+')cnt++;
+ 	if(s[0] == '-')cnt--;
+ 	if(s[2] == '+')cnt++;
+ 	if(s[2] == '-')cnt--;
+
+ }
+ cout << cnt << endl;
+
+ return 0;
 }

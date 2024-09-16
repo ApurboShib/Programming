@@ -1,35 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n'
-signed main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    string s;
-    cin >> s;
-    vector<int> v;
+#define ll long long
+const int MOD = 1e9 + 7;
+const int N = 1e5 + 9;
 
-    for (char c : s)
-    {
-        if (c != '+')
-        {
-            v += c;
-        }
-        else
-        {
-            vs.push_back(stoi(number));
-            v = " ";
-        }
-    }
-    v.push_back(stoi(number));
-    for (size_t i = 0; i < v.size(); ++i)
-    {
-        cout << v[i];
-        if (i < v.size() - 1)
-        {
-            cout << "+";
-        }
-    }
 
-    return 0;
+signed main(){
+
+ ios::sync_with_stdio(false);
+ cin.tie(nullptr);
+
+ int t;
+ cin >> t;
+ while(t--){
+    ll n;
+    cin >> n;
+    vector<int>v(n);
+    for(int i =0; i < n; i++) cin >> v[i];
+        map<int, int> mp;
+    for(auto x : v){
+        mp[x]++;
+    }
+    int ans = 0;
+    for(auto x : mp){
+        ans+= x.second/3;
+    }
+    cout << ans << endl;
+ }
+
+ return 0;
 }

@@ -8,42 +8,45 @@ vector<int> g[N];
 vector<int> dept(N);
 
 void dfs(int node, int par = -1){
-    for(auto child : g[node]) {
-        if(child == par) continue;
-        dept[child] = dept[node] + 1;
-        dfs(child, node);
-    }
+	for(auto child : g[node]){
+		if(child == par) continue;
+		dept[child] = dept[node] + 1;
+		dfs(child, node);
+	}
 }
 
 signed main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
 
-    int n; cin >> n;
-    for(int i = 0; i < n - 1; i++){
-        int x, y;
-        cin >> x >> y;
-        g[x].push_back(y);
-        g[y].push_back(x);
-    }
-    dfs(1);
-    int max_dep = -1, mx_node = -1;
-    for(int i = 1; i <= n; i++){
-        if(dept[i] > max_dep){
-            max_dep = dept[i];
-            mx_node = i;
-        }
-    }
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
 
-    fill(dept.begin(), dept.end(),0);
-    dfs(mx_node);
-    max_dep = -1;
-    for(int i = 1; i <= n; i++){
-        if(dept[i] > max_dep){
-            max_dep = dept[i];
-            mx_node = i;
-        }
-    }
-    cout << max_dep << endl;
-    return 0;
+	int n;
+	cin >> n;
+	for(int i = 0; i < n - 1; i++){
+		int a, b;
+		cin >> a >> b;
+		g[a].push_back(b);
+		g[b].push_back(a);
+	}
+	dfs(1);
+	int mx_d = - 1;
+	int mx_node;
+	for(int i = 1; i <= n; i++){
+		if(mx_d < dept[i]){
+			mx_d = dept[i];
+			mx_node = i;
+		}
+		dept[i] = 0;
+	}
+	
+	dfs(mx_node);
+	mx_d = -1;
+	for(int i = 0; i <= n; i++){
+		if(mx_d < dept[i]){
+			mx_d = dept[i];
+		}
+	}
+	cout << mx_d << endl;
+
+	return 0;
 }

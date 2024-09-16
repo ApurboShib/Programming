@@ -5,9 +5,14 @@ using namespace std;
 const int MOD = 1e9 + 7;
 const int N = 1e5 + 9;
 
+
 signed main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout << "JOY JOGANNATH" << endl;
-    return 0;
+
+ ios::sync_with_stdio(false);
+ cin.tie(nullptr);
+
+ int x = 10;
+ cout << (x << 1) << endl;
+
+ return 0;
 }
